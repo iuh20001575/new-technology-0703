@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Manage</h1>
+
+    <form action="/add" method="post" enctype="multipart/form-data">
+        <input type="text" name="id" placeholder="ID">
+        <input type="text" name="name" placeholder="name">
+        <input type="text" name="quantity" placeholder="quantity">
+        <input type="text" name="price" placeholder="price">
+        <input type="file" name="image">
+        <button type="submit">Add</button>
+    </form>
+
+    <form action="/delete" enctype="multipart/form-data" method="post">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Image</th>
+                    <th>
+                        <button type="submit">Delete</button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <% products.forEach(product=> { %>
+                    <tr>
+                        <td>
+                            <%= product.id %>
+                        </td>
+                        <td>
+                            <%= product.name %>
+                        </td>
+                        <td>
+                            <%= product.quantity %>
+                        </td>
+                        <td>
+                            <%= product.price %>
+                        </td>
+                        <td>
+                            <img src="<%= product.image %>" alt="">
+                        </td>
+                        <td>
+                            <input type="checkbox" name="ids" value="<%= product.id %>">
+                        </td>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
+    </form>
+</body>
+
+</html>
